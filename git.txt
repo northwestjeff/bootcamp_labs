@@ -1,0 +1,7 @@
+chris notes for git.  8/31/17
+
+git add  --all [file_name]      #[brackets are allternative to --all]
+
+git commit -m "message thing to leave as a comment  "#have to give it a commit message. make them helpful to give you an idea of what they were for.
+
+git push

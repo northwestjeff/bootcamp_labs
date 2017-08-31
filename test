@@ -1,0 +1,4 @@
+def add_things(*kwargs):
+    print(kwargs)
+
+add_things({thing1 = thing2})
