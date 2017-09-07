@@ -1,4 +1,9 @@
 import random
+import string
+
+# num_of_characters =
+# num_of_words =
+# num_of_sentances =
 
 
 # number of characters / 4.17 + ((#words/#sentances)* 0.5) - 21.43
@@ -11,17 +16,27 @@ import random
 #
 # def number_sentances():
 
+ari_scale = {
+         1: {'ages':   '5-6', 'grade_level': 'Kindergarten'},
+         2: {'ages':   '6-7', 'grade_level':    '1st Grade'},
+         3: {'ages':   '7-8', 'grade_level':    '2nd Grade'},
+         4: {'ages':   '8-9', 'grade_level':    '3rd Grade'},
+         5: {'ages':  '9-10', 'grade_level':    '4th Grade'},
+         6: {'ages': '10-11', 'grade_level':    '5th Grade'},
+         7: {'ages': '11-12', 'grade_level':    '6th Grade'},
+         8: {'ages': '12-13', 'grade_level':    '7th Grade'},
+         9: {'ages': '13-14', 'grade_level':    '8th Grade'},
+        10: {'ages': '14-15', 'grade_level':    '9th Grade'},
+        11: {'ages': '15-16', 'grade_level':   '10th Grade'},
+        12: {'ages': '16-17', 'grade_level':   '11th Grade'},
+        13: {'ages': '17-18', 'grade_level':   '12th Grade'},
+        14: {'ages': '18-22', 'grade_level':      'College'}
+    }
+
 speech_dict = {"1": "trump_speech.txt", "2": "mlk_letters.txt", "3": "obama_inaug.txt", "4": "gettysburg.txt"}
 punct_list = [".", "!", "?", ",", ";", ":", "'", "-", '"'] # TODO need to add doublequote to this
 
 
-print("Please choose from the following menu:")
-print("1) Trump Speech")
-print("2) MLK Letters from Birmingham Jail")
-print("3) Obama Inauguration Speech")
-print("4) The Gettysburg Address")
-#selection = str(input("---->:  "))
-selection = "3"
 
 
 def import_text(selection):
@@ -29,14 +44,11 @@ def import_text(selection):
     file = file.read()
     return file
 
-
 def remove_unnecessary_punct(file, punct_list):
     for punct in punct_list[3:-1]:
         file = file.replace(punct, "")
     file = file.replace("\n", " ")
-    # file = file.strip("\\n") 
     return file
-
 
 def split_sentance(file, punc_list):
     for punct in punct_list[0:2]:
@@ -46,10 +58,8 @@ def split_sentance(file, punc_list):
 def split_words(split_file):
     split_words = []
     for line in split_file:
-        #line_split = line.split("  ")
         line_split = line.split(" ")
         split_words.append(line_split)
-        #print(line_split)
     return split_words
 
 def words_in_sent(split_words):
@@ -62,43 +72,65 @@ def chars_in_words(split_words):
     char_in_words_list = []
     for line in split_words:
         for i in line:
-            print(len(i))
-            char_in_words_list = len(i)
+            #print(len(i))
+            char_in_words_list.append(len(i))
     return char_in_words_list
 
-# def remove_space(line_split):
-#     for line in line_split:
-#         print(line[0])
-#         # if line[0] == ""
-#             # print("YES!!!")
-#             # line.strip("")
-#     return no_space
+def sum_of_characters(char_in_words_list):
+    sum_of_chars = 0
+    for i in char_in_words_list:
+        sum_of_chars += int(i)
+    return sum_of_chars
 
-file = import_text(selection)
-file = remove_unnecessary_punct(file, punct_list)
-split_file = split_sentance(file, punct_list)
-split_words = split_words(split_file)
-char_in_words_list = chars_in_words(split_words)
-print(split_words)
+def ari_scale_calc(ari_scale, formula):
+    print("This text has an ARI rating of {}. ".format(str(formula)))
+    print("")
+    print("This corresponds to a {} reading level; appropriate for {} year-olds.".format(ari_scale[formula]["grade_level"], ari_scale[formula]["ages"]))
+    print("")
 
+def remove_space(split_words):
+    for line in split_words:
+        for i in line:
+            if i == "":
+                line.remove(i)
+    return split_words
 
+running = 0
 
+while running == 0:
+    print("")
+    print("Please choose a number from the following menu:")
+    print("1) Trump Speech")
+    print("2) MLK Letters from Birmingham Jail")
+    print("3) Obama Inauguration Speech")
+    print("4) The Gettysburg Address")
+    print("5) Quit")
+    selection = str(input("->:  "))
 
-# no_space = remove_space(line_split)
-# print(no_space)
-# print(line_split[1:4])
-#
-# print(punct_list[1])
+    if selection == "5":
+        running += 1
 
+    file = import_text(selection)
+    file = remove_unnecessary_punct(file, punct_list)
 
+    split_file = split_sentance(file, punct_list)
+    split_words = split_words(split_file)
+    split_words = remove_space(split_words)
 
+    char_in_words_list = chars_in_words(split_words)
 
-# print(split_words)
-# print(split_file)
-# for line in split_file:
-#     print(line)
-#     print(len(line))
-#     input("wait.")
+    sum_of_chars = sum_of_characters(char_in_words_list)
+    sum_of_words = len(char_in_words_list)
+    sum_of_sent = len(split_words)
+
+    formula = ((4.71 * (sum_of_chars/sum_of_words) + (0.5 * (sum_of_words/sum_of_sent)) - 21.43))
+
+    if formula - round(formula, 0) > 0:
+        formula = round(formula, 0) + 1
+
+    print(formula)
+    print("")
+    ari_scale_calc(ari_scale, int(formula))
 
 
 
