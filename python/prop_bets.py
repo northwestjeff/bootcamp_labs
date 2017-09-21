@@ -24,10 +24,10 @@ class User:
 
 
 class Sport:
-    def __init__(self):
+    def __init__(self, name):
         self.name = name
-        self.team_one = team_one
-        self.team_two = team_two
+        self.team_one = None
+        self.team_two = None
 
 
 class Team:
@@ -36,6 +36,7 @@ class Team:
         self.team_score = 0
         self.uni_color = None
 
+
 class Player:
     def __init__(self):
         self.last_name = last_name
@@ -43,23 +44,13 @@ class Player:
         self.full_name = "{} {} ".format(first_name, last_name)
         self.uni_number = uni_number
         self.points_scored = 0
+        self.team = team
 
-
-
-
-class Operator:
-    def __init__(self):
-        self.operator = None
-
-    operater_list = {"basketball": [],
-                     "football": [],
-                     "soccer": [],
-                     "baseball": [],
-                     "hockey": [],
-                     }
 
 class Condition:
     def __init__(self):
+        self.next_player_to = None
+        self.total = None
         self.odd_even = False
         self.over_under = False
 
@@ -73,12 +64,17 @@ class Data:
                      "baseball": {"teams": {1:"mets", 2:"yankees"}},
                      "hockey": {"teams": {1:"kings", 2:"flyers"}},
                      }
+
         self.current_games = {"basketball": {"today": [self.sports_list["basketball"]["teams"].get(1), self.sports_list["basketball"]["teams"].get(2)]},
                      "football": {"today": {1:"seahawks", 2:"panthers"}},
                      "soccer": {"today": {1:"timbers", 2:"orlando"}},
                      "baseball": {"today": {1:"mets", 2:"yankees"}},
                      "hockey": {"today": {1:"kings", 2:"flyers"}},
                      }
+
+        self.bets = {"over_under": {"basketball": ["Points", "3 Pointers"], "football": ["rushing yards", "touchdowns"], "soccer": , "baseball": [], "hockey": []}
+                     {"odds_evens": {"basketball": [], "football": [], "soccer":, "baseball": [], "hockey": []}}
+        }
 
 
 class Interface:
@@ -87,7 +83,7 @@ class Interface:
         self.player_two = None
         self.sport = None
         self.game = None
-        self.condition = None
+        self.bet = None
 
 
     def user_choice(self):
@@ -118,7 +114,7 @@ class Interface:
             for keys in data.sports_list:
                 print("  {}".format(keys))
             basketball = "basketball"   # TODO dummy input for testing
-            return basketball    # TODO dummy input for testing
+            return "basketball"    # TODO dummy input for testing
             # return input(">>> ")
 
     def game_choice(self):
@@ -126,10 +122,33 @@ class Interface:
         while running == True:
             counter = 1
             print("")
-            print("Here are the {} games today: ".format(self.sport))
-            print("{})  {} vs {}".format(counter, data.current_games[self.sport].get("today")[0],
-                                                                 data.current_games[self.sport].get("today")[1]))
-            running = False
+            print("Here are the {} games today: ".format(self.sport.name))
+            print("{})  {} vs {}".format(counter, data.current_games[self.sport.name].get("today")[0],
+                                                                 data.current_games[self.sport.name].get("today")[1]))
+            print("")
+            game = input("Which game would you like to bet on?")
+            game = "1"
+            if game == "1":
+                print(data.current_games[self.sport.name].get("today"))
+                game = data.current_games[self.sport.name].get("today")
+                return game
+            else:
+                print("No such game. ")
+                running = False
+
+    def bet_choice(self):
+        running = True
+        while running == True:
+            counter = 1
+            print("")
+            user_choice = input("Press 1 for over/under bets.  Press 2 for odd/even bets. ")
+            if user_choice == "1":
+                print("")
+                print("Here are the over/under bets for the {}".format(data.current_games[self.sport.name].get("today")))
+
+
+
+
 
     def interface_menu(self):
         print("Please select Player One:")
@@ -140,16 +159,9 @@ class Interface:
         # print("")
         # print("{} vs. {}.  Let's make it interesting.".format(self.player_one, self.player_two))
         # print("")
-        self.sport = self.sport_choice()
+        self.sport = Sport(self.sport_choice())
         self.game = self.game_choice()
-
-
-
-
-
-
-
-
+        self.bet =
 
 
 data = Data()
