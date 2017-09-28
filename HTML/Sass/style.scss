@@ -1,0 +1,70 @@
+@import "vars";
+
+//$border-mixin: true;
+
+//if statement that takes and argument
+@mixin border-mixin($border-dashed) {
+  @if $border-dashed == true {
+    border: dashed 10px green;
+  }
+  @else {
+    border: solid 2px red;
+  }
+}
+
+//for loop
+@for $i from 1 through length($stringlist) {
+  $currenttext: nth($stringlist, $i);
+  .photos li:nth-child(#{$i}) {
+    border: $standardborder;
+    &:before {
+      content: '#{$currenttext}';
+    }
+  }
+}
+
+
+@each $color in map-keys($colormap) {
+  .aside-#{$color} {
+    border: solid;
+    background: map_get($colormap, $color);
+  }
+}
+
+//While loop with an integer
+@while $intype > 0 {
+  .while-#{$intype} {
+    width: $inwidth + $intype;
+    $intype: $intype - 1;
+  }
+}
+
+
+//Nested decorators
+div {
+  background: lightblue;
+  section {
+    border: solid;
+    h2 {
+      color: cadetblue;
+    }
+  }
+}
+
+//References if statement above
+header {
+  @include border-mixin(true);
+  color: gray;
+  background: #333;
+  border: darkgray;
+}
+
+// Takes the decorators from the Header CSS above and adds on to them.  overwrites if lower.
+aside {
+  @extend header;
+  text-align: center;
+  border-bottom: dashed lightgoldenrodyellow;
+}
+
+
+

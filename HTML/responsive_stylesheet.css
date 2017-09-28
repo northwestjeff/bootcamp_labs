@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Hind');
+
+body {
+	background-color: #FF9B66;
+	margin: 0;
+	font-family: 'Hind', sans-serif;
+}
+
+.menu {
+	background-color: #F4D8CD;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+}
+
+.logo {
+    justify-content: flex-start;
+}
+
+.icon {
+    display: none;
+
+
+}
+
+.menu div:first-child {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.topnav {
+    display: flex;
+}
+
+a, p {
+	color: #FF9B66;
+	text-decoration: none;
+    padding-right: 10px;
+    justify-content: space-around;
+}
+
+li {
+    list-style: none;
+    padding-right: 10px;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .topnav{
+        display: none;
+    }
+
+    .icon {
+        display: block;
+    }
+
+    .menu div:first-child{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu {
+
+
+}

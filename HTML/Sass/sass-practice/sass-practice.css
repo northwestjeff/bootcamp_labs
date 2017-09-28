@@ -1,0 +1,83 @@
+body {
+  margin: auto;
+  align-content: center; }
+
+header, footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #9c27b0;
+  color: white;
+  height: 95vh;
+  background: linear-gradient(270deg, rebeccapurple, lightcoral);
+  background-size: 400% 400%;
+  animation: BackgroundAnimation 3s infinite; }
+
+@keyframes BackgroundAnimation {
+  0% {
+    background-position: 10% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+.project-list {
+  display: flex;
+  width: 75%;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  flex-direction: column;
+  background: #efefef;
+  margin: auto;
+  margin-top: 3em;
+  border-radius: 10px; }
+  .project-list div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+  .project-list ul {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0; }
+  .project-list li {
+    display: flex;
+    justify-content: space-around; }
+
+.project-list li:nth-child(1) {
+  background-image: url(https://visualhunt.com/photos/xl/7/flower-bouquet-bunch-daisys.jpg);
+  background-size: cover;
+  width: 10em;
+  height: 7em;
+  border: solid 1px blue; }
+
+.project-list li:nth-child(2) {
+  background-image: url(https://visualhunt.com/photos/l/7/sky-silhouette-star.jpg);
+  background-size: cover;
+  width: 10em;
+  height: 7em;
+  border: solid 1px blue; }
+
+.project-list li:nth-child(3) {
+  background-image: url(https://visualhunt.com/photos/l/7/animal-kitten-pet.jpg);
+  background-size: cover;
+  width: 10em;
+  height: 7em;
+  border: solid 1px blue; }
+
+.articles {
+  width: 75%;
+  align-content: center;
+  margin: auto; }
+  .articles article, .articles div {
+    background-color: #efefef;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px; }
+
+/*# sourceMappingURL=sass-practice.css.map */

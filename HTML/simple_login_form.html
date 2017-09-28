@@ -1,10 +1,82 @@
+<!--# Exercise: Create a Simple Login Form-->
+
+<!--## Objective-->
+
+<!--Create a simple login form using HTML.-->
+
+<!--1. Log in to [CodePen](http://codepen.io) and create a new pen-->
+<!--1. Copy and paste the following into the CSS panel: `label {display: block;}`-->
+<!--1. Create a form that meets the following requirements:-->
+    <!-- - Form action is `https://example.com/login`-->
+    <!-- - Form method is `POST`-->
+    <!-- - Form contains a text input for the user’s username-->
+    <!-- - Form contains a password input for the user’s password-->
+    <!-- - Form contains a checkbox input for whether or not the site should remember the user’s login-->
+    <!-- - Form contains two radio inputs with the name `newsletter` and the values `yes` and `no` (with `no` selected by default) to capture whether or not the user wants to receive the site’s newsletter-->
+    <!-- - Form contains a select input for the user’s state (use the HTML from [this pen](http://codepen.io/segdeha/pen/gMpqdY?editors=1000) for the select list)-->
+    <!-- - Form contains a button with the label `Submit`-->
+
+<!--Copy and paste the following into the CSS pane in your pen to help with formatting (I’ll explain what it does exactly when we start learning CSS):-->
+
+    <!--label {-->
+        <!--display: block;-->
+    <!--}-->
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+<!--## Extra Credit-->
+
+<!-- - Add more fields of varying types-->
+<!-- - Try grouping related fields using the `<fieldset></fieldset>` tag-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Simple Login Form</title>
+    <style>
+        body {
+            margin: auto;
+            width: 50%;
+            text-align: center;
+            background-image: element();
+            border: chocolate 3px solid ;
+            padding: 10px;
+            font: all-petite-caps;
+            font-size: larger;
+        }
+
+    </style>
+
 </head>
 <body>
-$END$
+
+
+    <div>
+        <form action="https://example.com/login" method="post">
+            <label for="username">username</label>
+                <input type="text" name="username" id="username"><br>
+
+
+            <label for="password">password</label>
+                <input type="password" name="password" id="password"><br>
+
+
+            <label for="remember_login" id="remember_login">Remember login information? </label>
+                <input type="checkbox" name="remember_login" id="remember_login"><br><br>
+
+            <label for="subscribeYes" id="subscribeYes">Subscribe to our Newsletter?  </label>
+                <input type="radio" name="subscribe" id="subscribeYes" value="Yes">Yes
+            <label for="subscribeNo" id="subscribeNo"></label>
+                <input type="radio" name="subscribe" id="subscribeNo" value="No" checked>No<br>
+
+            <label for="submit" id="submit">Submit</label>
+                <input type="submit" name="submit" id="submit"><br><br>
+
+
+
+        </form>
+    </div>
+
 </body>
 </html>

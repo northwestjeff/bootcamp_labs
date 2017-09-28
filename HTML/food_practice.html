@@ -1,10 +1,109 @@
+<!--# Practice: Food Preferences-->
+
+<!--Save your solution in a directory in `practice/` in a branch and make a GitHub pull request all named `food`.-->
+<!--Your HTML file should be named `index.html` in that directory.-->
+
+<!--Create a new web page with a form that solicits people's feedback on their dinner yesterday.-->
+
+<!--Provide:-->
+
+<!--* A text box for single line description of what they ate dinner-->
+<!--* A selection of checkboxes for "meat", "potatoes", "broccoli", "cheese" and have them select if any of them were eaten-->
+<!--* A radio button where they can select if they were vegetarian or non-->
+<!--* A drop-down menu of ice cream flavors and have them select their favorite-->
+<!--* A free-form text field where they can talk about their most memorable dinner ever-->
+<!--* A button to press if they're hungry; it should not submit-->
+<!--* A button to submit-->
+
+<!--## Advanced-->
+
+<!--* Allow the user to upload an image of their best pair of chopsticks-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Food Preferences</title>
+    <style>
+        body{
+            background-image: url("http://gifrific.com/wp-content/uploads/2014/03/Larry-David-Sticks-Out-Head-Dinner-Party.gif");
+            text-shadow: lawngreen;
+            margin: inherit;
+
+        }
+        label{
+            background-color: greenyellow;
+            alignment: center;
+        }
+        div{
+            background-image: url("https://media.giphy.com/media/2VC9uMlSDTZfO/giphy.gif");
+            border: dotted crimson 2px;
+            padding-bottom: 100px;
+            margin-left: 5%;
+            margin-right: 5%;
+            alignment: center;
+            font-family: Helvetica;
+        }
+    </style>
+
 </head>
 <body>
-$END$
+    <div>
+    <h1 style="background-color: aqua; text-align: center">Let's talk about dinner.</h1>
+        <form action="intro_notes.html" method="post">
+        <div>
+            <label for="dinner" id="dinner">What's for dinner?</label>
+                <input type="text" name="dinner" id="dinner" cols="50">
+        </div>
+        <div>
+            <h3 style="background-color: lawngreen; margin-right: 80%" >What was in your meal?</h3>
+
+            <label>Brocolli
+                <input type="checkbox" name="Brocolli" id="dinner_elements" value="brocolli"></label>
+
+            <label>Rice
+                <input type="checkbox" name="Rice" value="rice"></label>
+
+            <label>Sugar
+                <input type="checkbox" name="sugar" id="dinner_elements" value="sugar"></label>
+
+            <label>milk
+                <input type="checkbox" name="Milk" id="dinner_elements" value="milk"></label>
+
+            <label>Honey
+                <input type="checkbox" name="honey" id="dinner_elements" value="honey"></label>
+            <br>
+        </div>
+        <div>
+            <h3 style="background-color: whitesmoke; color: saddlebrown">Do you prefer to eat vegetarian? </h3>
+            <label>
+                Yes <input type="radio" name="vegetarian" value="Yes">
+            </label>
+            <label>
+                No <input type="radio" name="vegetarian" value="No">
+            </label>
+        </div>
+        <div>
+            <h3 style="background-color: cornflowerblue; margin-right: 60%">
+                What kind of ice cream do you like?
+            </h3>
+            <select name="iceCreamType">
+                <option value=""></option>
+                <option value="Cookie Dough">Cookie Dough</option>
+                <option value="Mint Chocolate Chip">Mint Chocolate Chip</option>
+                <option value="Strawberry Balsamic Vinegar and Cracked Pepper">Strawberry Balsamic Vinegar and Cracked Pepper</option>
+                <option value="Phish">Phish</option>
+            </select>
+        </div>
+        <div>
+            <h2 style="background-color: orange ; margin-right: 20">Tell me about the GMOAT (greatest meal of all time)</h2>
+                <textarea name="memorableMeal" id="memorableMeal" rows="4" cols="50"></textarea>
+            <br>
+        </div>
+        <div>
+            <input type="button" value="Click me if you're hungry!" disabled>
+        </div>
+        </form>
+    </div>
 </body>
 </html>
