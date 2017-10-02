@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:600');
+
+
+.page-wrapper {
+  font-family: 'Muli', sans-serif;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  background-color: #fc783e;
+  padding: 65px 96px 0 96px;
+  font-size: 1.5em;
+    h1 {
+      margin-bottom: 0;
+    }
+}
+
+.summary {
+  @extend .banner;
+  font-size: small;
+  padding: 0 96px 20px 96px;
+
+}
+
+.preamble {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/CSIRO_ScienceImage_3176_Arabidopsis_in_growth_cabinet_at_the_CSIRO_Discovery_Centre_labs_Black_Mountain_ACT.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 20px 96px 20px 96px;
+}
+
+.main-supporting {
+  @extend .preamble;
+  background-image: url(http://www.lovethispic.com/uploaded_images/223291-Nature.jpg);
+
+}
+
