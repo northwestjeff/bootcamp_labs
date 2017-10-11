@@ -1,5 +1,10 @@
 
 
+function wallPaper() {
+
+}
+
+
 var options = {
   enableHighAccuracy: false,
   timeout: 5000,
@@ -27,16 +32,16 @@ function success(pos) {
                 $('#prec').append('<li>' + response.weather[i].description + '</li>')
             }
             if (response.weather[0].description.includes("rain") === true) {
-              $('.main').css('background-image', 'url("rain.jpeg")');
+              $('.main').css('background-image', 'url("https://ravencorwin.files.wordpress.com/2013/02/fi-watching-rain.jpg")');
 
             } else if ($('.datapoint')[2].children[0].innerHTML.includes("snow") === true) {
-                $('.main').css('background-image', 'url("snow.jpeg")');
+                $('.main').css('background-image', 'url("https://lh3.googleusercontent.com/cTdawK_8M3f8LodY_rpdc-xzwOFLpVyMSbnRh_A_dQAYWw1dl_frS_FcWpxlJgdf7Q=h900")');
             } else if ($('.datapoint')[2].children[0].innerHTML.includes("cloud") === true) {
-                $('.main').css('background-image', 'url("cloudy.jpeg")');
+                $('.main').css('background-image', 'url("https://c1.staticflickr.com/1/64/218773074_908e6c3147_b.jpg")');
             } else if ($('.datapoint')[2].children[0].innerHTML.includes("clear") === true) {
-                $('.main').css('background-image', 'url("sunnyportland.jpeg")');
+                $('.main').css('background-image', 'url("http://eskipaper.com/images/cat-in-sunshine-1.jpg")');
             } else {
-                $('.main').css('background-image', 'url("water.jpeg")');
+                $('.main').css('background-image', 'url("http://www.dgrescue.org.uk/greyhound-and-cat.jpg")');
         }
     }
 })
@@ -53,6 +58,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 $('#search').submit(function () {
   console.log("submit")
   event.preventDefault()
+  $('#prec').empty()
 
   $.ajax({
       url: 'http://api.openweathermap.org/data/2.5/weather',
@@ -72,7 +78,17 @@ $('#search').submit(function () {
           for (i = 0; i < response.weather.length; i++) {
               $('#prec').append('<li>' + response.weather[i].description + '</li>')
             }
-
+          if (response.weather[0].description.includes("rain") === true) {
+              $('.main').css('background-image', 'url("https://ravencorwin.files.wordpress.com/2013/02/fi-watching-rain.jpg")');
+            } else if ($('.datapoint')[2].children[0].innerHTML.includes("snow") === true) {
+                $('.main').css('background-image', 'url("https://lh3.googleusercontent.com/cTdawK_8M3f8LodY_rpdc-xzwOFLpVyMSbnRh_A_dQAYWw1dl_frS_FcWpxlJgdf7Q=h900")');
+            } else if ($('.datapoint')[2].children[0].innerHTML.includes("cloud") === true) {
+                $('.main').css('background-image', 'url("https://c1.staticflickr.com/1/64/218773074_908e6c3147_b.jpg")');
+            } else if ($('.datapoint')[2].children[0].innerHTML.includes("clear") === true) {
+                $('.main').css('background-image', 'url("http://eskipaper.com/images/cat-in-sunshine-1.jpg")');
+            } else {
+                $('.main').css('background-image', 'url("http://www.dgrescue.org.uk/greyhound-and-cat.jpg")');
+        }
 
           }
       }
