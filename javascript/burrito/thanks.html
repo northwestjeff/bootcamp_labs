@@ -39,6 +39,8 @@
     var uriBlock = location.search.substring(1);
     var uriSplit = uriBlock.split("&");
     var uriDict = JSON.parse('{"' + decodeURI(uriBlock).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+    var uri = uriSplit.split("=")
+
 
 </script>
 </body>

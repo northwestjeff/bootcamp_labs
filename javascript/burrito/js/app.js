@@ -152,11 +152,6 @@ nameValidation = function() {
 $('[name="name"]').blur(nameValidation)
 
 
-
-
-
-
-
 // CHECKS CREDIT CARD NUMBER
 creditCardValidation = function() {
     var creditCard = $('[name="credit-card"]').val()
