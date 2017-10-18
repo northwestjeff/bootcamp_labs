@@ -1,6 +1,6 @@
 ## Name
 
-Loan Term Compliance Monitoring
+Covenant Monitoring
 
 ## Product Overview
 
@@ -27,32 +27,32 @@ that data connection will allow the user to receive alerts for non-compliance
 Spend some time drawing out on paper mockups _every_ page of your MVP site.
 
 * Home Page (compliance dashboard)
-  * view of non-compliance
-    * automated list of noncompliance, with details of metric (who, what, when, etc.)
-    * automated list of near noncompliance, with details of metric (who, what, when, etc.)
-  * view of portfolio data
-    * aggregate data, like total portfolio volume, etc.
-  * link to add new business
-  * link to update existing business
-* Create/Edit business
-  * update information
-  * add new loan
-  * edit existing loan
+  * Summary of total $ loan
+  * Summary of Noncompliance
+    * ~~automated list of noncompliance, with details of metric (who, what, when, etc.)~~
+    * ~~automated list of near noncompliance, with details of metric (who, what, when, etc.)~~
+  * ~~view of portfolio data~~
+    * ~~aggregate data, like total portfolio volume, etc.~~
+  * Links: View Portfolio, Add Loan, Edit Loan
+* Portfolio
+  *  Table: portfolio
+  *  Table: noncompliance
 * Create new loan
-      * amount, details
-      * term, convenants
- * Create Covenants
-   * covenants based on operators and conditions
-   * chooses datapoint from Quickbooks API to measure covenant
- * update/edit existing loan
+    * amount, details
+     * Create Covenants
+       * covenants based on operators and conditions
+       * chooses datapoint from Quickbooks API to measure covenant
 
 TBD:
 * Borrower portal/view?
 * What interaction does the user need to have with QB API?
+* Authentication
 
 ~~Annotate _every_ component of the interface _every_ action the user can take.~~
 
 If there is any actions your app needs to take in the background describe _each_ of them and how they change the underlying data your app saves.
+*  Compare the financial statement data to the covenant data
+
 
 **Pick the minimum feature set for your product to work.**
 ~~Everything else should go in the "further work" section.~~
@@ -70,25 +70,21 @@ I literally mean _every_.
 ~~What are the persistent "nouns" you need to save across pages in your project MVP?~~
 ~~What do they represent?~~
 
-Store data per loan per business within a portfolio.
-Measure against Quickbooks API data.
+
+See tables:
 
 #### Tables
-1. Users
-   * login, password, name, email, name of business, title, etc.
-2. Businesses
-   * name, address, phone, email, loan_name
-3. Loans
+3. Portfolio
    * amount, maturity date, payment schedule, loan conditions
-4. Loan conditions
+4. Covenants
    * datapoint, operator, standard (for example: DSCR, greater than, 1.2), noncompliance status, days since compliance
 5. Noncompliance
    * loan names, conditions not compliant, degree of noncompliance
 
-We'll be using a relational database which models things like a spreadsheet.
-There are fixed fields and every instance
+~~ We'll be using a relational database which models things like a spreadsheet.~~
+~~There are fixed fields and every instance~~
 
-How do you need to _search_ for specific instances of nouns?
+~~How do you need to _search_ for specific instances of nouns?~~
 
 ## Technical Components
 
@@ -114,6 +110,10 @@ It's okay if they end up not working and you have to change your plans.
 This is _more specific_ than "Django backend, CSS style, etc."
 Please specify what specific technical problems you'll have to solve and a guess at the solution.
 
+*  Authentication
+*  Quickbooks API returns
+
+
 ## Schedule
 
 Write out the order in which you will tackle your technical components of your MVP.
@@ -128,13 +128,9 @@ What are the hard parts?
 
 
 Can you guess how long you'll take for each?
+*  Tough to say.  Figuring out the API will be the toughest part.
 
-Work on the tough and crucial parts first.
 
 ## Further Work
 
-All of the above parts are _just addressing your MVP_.
-Here you should outline other features you'd like to implement if you get "done" early.
-Order them by importance towards your high-level goal and what order you'll work on them later.
-
-Don't work on any of these features until **all of MVP is complete**.
+* HOme Page dashboard
