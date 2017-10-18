@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,KAAM;EACL,gBAAgB,EAAE,YAAY;;AAG/B,IAAK;EACH,MAAM,EAAE,kCAA+B;;AAGzC,IAAK;EACH,gBAAgB,EAAE,SAAS;EAC3B,MAAM,EAAE,cAAc;;AAGxB,oBAAU;EACR,MAAM,EAAE,oBAAoB;;AAS9B,OAAQ;EACN,gBAAgB,EAAE,OAAO;;AAG3B,QAAS;EACP,MAAM,EAAE,qBAAqB;;AAG/B,MAAO;EACL,MAAM,EAAE,qBAAqB",
+"sources": ["compliance_stylesheet.scss"],
+"names": [],
+"file": "compliance_stylesheet.css"
+}

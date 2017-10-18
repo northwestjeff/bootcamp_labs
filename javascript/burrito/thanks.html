@@ -38,8 +38,56 @@
 <script>
     var uriBlock = location.search.substring(1);
     var uriSplit = uriBlock.split("&");
-    var uriDict = JSON.parse('{"' + decodeURI(uriBlock).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
-    var uri = uriSplit.split("=")
+    var orderDetails = $('#order-details')
+    var uriValues = [];
+    var uriPrint = [];
+    for (i = 0; i < uriSplit.length; i++) {
+            uriValues.push(uriSplit[i].split('=')[1])
+        }
+
+    var niceDict = {
+        "white": "White Tortilla",
+        "wheat": "Wheat Tortilla",
+        "spinach": "Spinach Tortilla",
+        "carnitas": "Carnitas",
+        "beans": "Beans",
+        "salsa": "Salsa",
+        "cheese": "Cheese",
+        "sour+cream": "Sour Cream",
+        "sauteed-mushrooms": "Sauteed Mushrooms",
+        "sauteed-onions": "Sauteed Onions",
+        "guacamole": "Guacamole",
+        "chicken": "Chicken",
+        "sofritas": "Sofritas",
+        "scrambled-eggs": "Scrambled Eggs",
+        "corn": "Corn Tortillas",
+        "sun-dried-tomatoes": "Sun Dried Tomatoes",
+        "olives": "Olives",
+        "jalapeno": "Jalapeños"
+    }
+
+    orderDetails.empty()
+    for (i = 0; i < uriValues.length; i++) {
+        uriPrint.push(niceDict[uriValues[i]])
+    }
+
+   uriPrint = uriPrint.filter(function(n){ return n != undefined });
+
+//     for (i = 0; i < uriPrint.length; i++) {
+//        if (typeof uriPrint[i] === "undefined") {
+////            console.log(uriPrint[i] + "undefined" + i)
+//            uriPrint.splice(i, 1)
+//        } else {
+//        }
+//    }
+//    console.log(uriPrint)
+
+    for (i = 0; i < uriPrint.length; i++) {
+        orderDetails.append("<li>" + uriPrint[i]+ "</li>")
+    }
+
+//    orderDetails.empty()
+//    orderDetails.append("<li>" + uriPrint[8]+ "</li>")
 
 
 </script>

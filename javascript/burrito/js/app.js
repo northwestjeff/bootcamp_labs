@@ -2,6 +2,7 @@ $('.ui.checkbox').checkbox()
 
 // TODO A: fix the included ingredients.  They're being subtracted from the total.
 // TODO B: Notifications needed for when CC form is filled incorrectly.  if validform=false:...
+
 // $('checkbox.ui.checkbox').change(function () {
 //     var item = this.children[0];
 //     if (item.checked === true) {
@@ -42,7 +43,6 @@ $('[name="tortilla"]').change(function () {
        $('#tortilla').remove();
        $('#orderList').append('<li class="item" id="tortilla"> ' + new_item.val() + '  </li>');
    }
-   // addTotal()
 });
 
 //
@@ -68,6 +68,7 @@ $('[name="tortilla"]').change(function () {
 // and description attributes and add the new 'checked' selection to
 // Order List and remove the previously checked selection.
 //
+
 $('input[type="checkbox"]').change(function () {
     var description = $(this).attr('name');
     var menuName = $(this).next().html();
@@ -79,8 +80,8 @@ $('input[type="checkbox"]').change(function () {
     } else { addRemove(description, menuName, isChecked)
 
     }
-    // addTotal()
 
+    // addTotal()
     // if ($(this).is(":checked")) {
     //     $('.list').append('<li class="item" name="' + description + '" value="' + menuName + '" id="' + menuName + '">' + menuName + '</li>')
     // } else {
@@ -124,7 +125,7 @@ addRemove = function(description, menuName, isChecked) {
 
 
 
-// Not called.  Likely should delete.
+// Not called.  Likely should delete. TODO
 addTotal = function() {
     var orderListChildren = $('.list').children();
     for (i = 0; i < orderListChildren.length; i++) {
