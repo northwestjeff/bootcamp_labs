@@ -1,23 +1,37 @@
+body {
+  font-family: 'Assistant', sans-serif; }
+
+.header {
+  background-color: #A0a083;
+  color: white; }
+
 .menu {
-  background-color: mediumpurple; }
+  background-color: #EAE0CC;
+  margin-bottom: 15px; }
 
-.box {
-  border: rgba(255, 238, 77, 0.65) solid 1px; }
+h1 {
+  padding: 10px 10px; }
 
-.row {
-  background-color: orangered;
-  border: solid blue 1px; }
+h4 {
+  color: #5c4f4a; }
 
-.col-sm-4, .col-sm-8 {
-  border: solid whitesmoke 2px; }
+.table {
+  margin-bottom: 100px; }
 
-.second {
-  background-color: #00A6A6; }
+.tableHeader {
+  background-color: #4d6a6d;
+  color: floralwhite; }
 
-.rounded {
-  border: solid floralwhite 3px; }
+.tableTitle, .titleName {
+  margin: 8px 5px;
+  background-color: #EAE0CC;
+  border: solid 1px white;
+  margin: 0; }
 
-.col-7 {
-  border: solid yellowgreen 2px; }
+.portSummary {
+  border: solid white 1px; }
+
+.titleName {
+  font-size: large; }
 
 /*# sourceMappingURL=compliance_stylesheet.css.map */
