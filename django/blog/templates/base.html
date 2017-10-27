@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Home</title>
+    <link rel="stylesheet" href="{% static 'blog_app/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="title"><h1>Bob Lablaw's Law Blog</h1></div>
+</div>
+<div class="container">
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</html>

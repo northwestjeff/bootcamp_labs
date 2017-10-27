@@ -1,0 +1,6 @@
+{% load static %}
+
+body {
+    background-color: grey;
+    color: yellow;
+}

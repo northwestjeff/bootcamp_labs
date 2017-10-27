@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'polls/css/style.css' %}">
+</head>
+<body>
+<div>
+    <h1>home page!!</h1>
+    <p>test</p>
+    {% for i in question %}
+        <div>
+       <li>{{ i.question_text }}</li>
+    </div>
+        {% endfor %}
+    {% for i in choice %}
+        <div>
+       <li>{{ i.choice_text}}</li>
+    </div>
+        {% endfor %}
+
+</div>
+</body>
+</html>
