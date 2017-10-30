@@ -65,3 +65,17 @@ body {
 .date {
     margin: 0px 20px;
 }
+#picdiv {
+    display: flex;
+    height: 120px;
+    justify-content: center;
+}
+
+.postpic {
+    display: flex;
+    width: 130px;
+    height: auto;
+    border: solid lightgreen 1px;
+    border-radius: 40%;
+    margin: 15px;
+}
