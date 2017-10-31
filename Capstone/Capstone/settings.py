@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-os.path.join(BASE_DIR, 'blog_app', 'static')
+os.path.join(BASE_DIR, 'pages', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
