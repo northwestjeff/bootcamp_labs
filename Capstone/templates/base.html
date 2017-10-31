@@ -18,22 +18,28 @@
         <h1 id="title">Covenant Monitoring</h1>
     </header>
     <div class="row menu">
-        <div class="col-4">
-            <h4 id="portfolio">Portfolio</h4>
+        <div class="col-3">
+            <h4 id="portfolio"><a href="http://localhost:8000/">Portfolio</a></h4>
         </div>
-        <div class="col-4">
-            <h4 id="new-loan">New Loan</h4>
+        <div class="col-3">
+            <h4 id="new-loan"><a href="http://localhost:8000/new_loan">New Loan</a></h4>
         </div>
-        <div class="col-4">
+        <div class="col-3">
+            <h4 id="new-covenant"><a href="http://localhost:8000/new_covenant">New Covenant</a></h4>
+        </div>
+        <div class="col-3">
             <h4 id="update-loan">Update Loan</h4>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-1"></div>
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-
+    <div class="col-1"></div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

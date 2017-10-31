@@ -2,6 +2,32 @@
 
 
 {% block content %}
-home
+    <div class="col-10">
+        <div class="jumbotron">
+            <h3>Portfolio Summary</h3>
+            <p>Total Loans: {{ loans|length }}</p>
+            <p>Total Portfolio Amount: {{ loans_sum }} </p>
+        </div>
+        <table class="table table-bordered hover">
+            <thead>
+            <tr>
+                <th>Loan ID #</th>
+                <th>Organization Name</th>
+                <th>Loan Amount</th>
+                <th>Compliance</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in loans %}
+                <tr>
+                    <td>{{ i.loan_id }}</td>
+                    <td>{{ i.organization }}</td>
+                    <td>{{ i.amount }}</td>
+                    <td>{{ i.loan_compliance }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
 
+        </table>
+    </div>
 {% endblock %}

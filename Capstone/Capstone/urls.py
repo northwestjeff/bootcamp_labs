@@ -20,6 +20,9 @@ from django.conf import settings
 from pages import views as pages_views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', pages_views.home, name='home'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  url(r'^admin/', admin.site.urls),
+                  url(r'^$', pages_views.home, name='home'),
+                  url(r'^new_loan/', pages_views.new_loan, name='newloan'),
+                  url(r'^new_covenant/', pages_views.new_covenant, name='newcovenant'),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
+                                                                                           document_root=settings.MEDIA_ROOT)
