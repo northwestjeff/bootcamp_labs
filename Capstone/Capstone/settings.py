@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'qboauth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',
+    'requests'
 ]
 
 MIDDLEWARE = [
@@ -122,7 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-os.path.join(BASE_DIR, 'pages', 'static')
+os.path.join(BASE_DIR, 'pages', 'static'),
+os.path.join(BASE_DIR, 'qboauth', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
@@ -131,3 +134,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
+DISCOVERY_DOCUMENT = 'https://developer.api.intuit.com/.well-known/openid_sandbox_configuration/'
+CLIENT_ID = 'Q0AaC7Zk5JlBRJqGjBkLthuJ7RV8Jpdg8xab0vtviZAYJWF16g'
+CLIENT_SECRET = 's5I3D2Wn22tsbcXcUwkdrVV5d1LGcH7bTimWD6Bb'
+REDIRECT_URI = 'http://localhost:8000/qboauth/authCodeHandler'
+ACCOUNTING_SCOPE = 'com.intuit.quickbooks.accounting'
+OPENID_SCOPES = ['openid','profile','email','phone','address','Account']
+GET_APP_SCOPES = ['com.intuit.quickbooks.accounting', 'openid','profile','email','phone','address']
+SANDBOX_QBO_BASEURL = 'https://sandbox-quickbooks.api.intuit.com'
+SANDBOX_PROFILE_URL = 'https://sandbox-accounts.platform.intuit.com/v1/openid_connect/userinfo'
+ID_TOKEN_ISSUER = 'https://oauth.platform.intuit.com/op/v1'

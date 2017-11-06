@@ -107,3 +107,20 @@ class Organization(models.Model):
 #
 #     def __str__(self):
 #         return self.loans  # , self.total_origination
+
+class Statement(models.Model):
+    time = models.DateTimeField()
+    name = models.CharField(max_length=255)
+    start_period = models.DateField()
+    end_period = models.DateField()
+    summarize_by = models.CharField(max_length=100)
+    organization = models.ForeignKey(Organization, related_name='statements')
+
+
+class Data(models.Model):
+    statement = models.ForeignKey("Statement", related_name="data")
+    column_headers = models.CharField(max_length=100)
+    value = models.CharField(max_length=25)
+
+    def __str__(self):
+        return "{}: {} - {}".format(self.column_headers, self.value, self.statement.name)

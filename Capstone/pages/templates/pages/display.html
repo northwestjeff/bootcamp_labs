@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DISPLAY</title>
+</head>
+<body>
+
+{% for i in statement %}
+    {{ i.time }}<br>
+    {% for foo in i.data.all %}
+        {{ foo.column_headers }}: {{ foo.value }}<br>
+
+    {% endfor %}
+
+    <hr>
+
+
+{% endfor %}
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from pages.forms import NewLoanForm, NewCovenantForm
 
-from pages.models import ClientUser, Loan, Covenant  # , Borrower, Organization, Portfolio, NoncompliantPortfolio
+from pages.models import ClientUser, Loan, Covenant, Statement# , Borrower, Organization, Portfolio, NoncompliantPortfolio
 
 
 def home(request):
@@ -35,3 +35,7 @@ def new_covenant(request):
             loan = form.save(commit=False)
             loan.save()
     return render(request, 'pages/new_loan.html', {"form": form})
+
+
+def display(request):
+    return render(request, 'pages/display.html', {"statement": Statement.objects.all()})
