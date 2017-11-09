@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.models import User
 from localflavor.us.models import USStateField
 from djmoney.models.fields import MoneyField
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
 
 payment_schedule_options = (
     ('WEEKLY', 'weekly'),
@@ -22,12 +24,37 @@ class Loan(models.Model):
     payment_schedule = models.CharField(max_length=25, choices=payment_schedule_options)
     regular_payment_amount = MoneyField(max_digits=10, decimal_places=2, default_currency='USD')
     loan_compliance = models.BooleanField(default=True)  # If all covenants are true
+    slug = models.SlugField(max_length=50, unique=True, blank=True, null=True)
+
+
     # portfolio = models.ForeignKey('Portfolio', related_name='loans')
     # noncomp_portfolio = models.ForeignKey('NoncompliantPortfolio', related_name='loans')
 
+    def _get_unique_slug(self):
+        passed_slug = "{} {}".format(self.loan_id, self.organization.business_name)
+        slug = slugify(passed_slug)
+        unique_slug = slug
+        num = 1
+        while Organization.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save()
+
+    # def make_slug(self):
+    #     passed_slug = "{} {}".format(self.loan_id, self.organization.business_name)
+    #     self.slug = slugify(passed_slug)
 
     def __str__(self):
-        return "{}.{}.{}".format(self.loan_id,self.organization,self.amount)
+        return self.cov_id
+
+    def __str__(self):
+        return "{}.{}.{}".format(self.loan_id, self.organization, self.amount)
+
 
 indicator_options = (
     ('DSCR', 'Debt Service Coverage Ratio'),
@@ -36,11 +63,12 @@ indicator_options = (
 )
 
 operator_options = (
-    ('GREATER_THAN', '>'),
-    ('LESS_THAN', '<'),
-    ('EQUAL_TO', '='),
-    ('NOT_EQUAL_TO', '≠'),
+    ('Greater Than', '>'),
+    ('Less Than', '<'),
+    ('Equal to', '='),
+    ('NOT Equal to', '≠'),
 )
+
 
 class Covenant(models.Model):
     cov_id = models.CharField(max_length=15)
@@ -51,10 +79,29 @@ class Covenant(models.Model):
     date_last_compliant = models.DateField(blank=True, null=True)
     num_times_noncomp = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
     loans = models.ForeignKey(Loan, related_name='covenants')
+    slug = models.SlugField(max_length=50, unique=True, blank=True, null=True)
+    comparison = models.CharField(max_length=100, blank=True, null=True)
+
+
+    def _get_unique_slug(self):
+        slug = slugify(self.cov_id, self.indicator)
+        unique_slug = slug
+        num = 1
+        while Organization.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save()
+
+    def make_slug(self):
+        self.slug = slugify(self.cov_id, self.indicator)
 
     def __str__(self):
         return self.cov_id
-
 
 
 class ClientUser(models.Model):
@@ -72,11 +119,30 @@ class Organization(models.Model):
     city = models.CharField(max_length=255, blank=True, null=True)
     state = USStateField(null=True, blank=True)
     zip = models.CharField(max_length=5, blank=True, null=True)
+    slug = models.SlugField(max_length=50, unique=True, blank=True, null=True)
+
+    def _get_unique_slug(self):
+        slug = slugify(self.business_name)
+        unique_slug = slug
+        num = 1
+        while Organization.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self._get_unique_slug()
+        super().save()
+
+    # def make_slug(self):
+    #     self.slug = slugify(self.business_name)
 
     # portfolio = models.OneToOneField('Portfolio')
 
     def __str__(self):
         return self.business_name
+
 
 # class Borrower(models.Model):
 #     # Need to inherit from Organization class
@@ -114,7 +180,7 @@ class Statement(models.Model):
     start_period = models.DateField()
     end_period = models.DateField()
     summarize_by = models.CharField(max_length=100)
-    organization = models.ForeignKey(Organization, related_name='statements')
+    organization = models.ForeignKey(Organization, related_name='statements', blank=True, null=True)
 
 
 class Data(models.Model):
@@ -124,3 +190,5 @@ class Data(models.Model):
 
     def __str__(self):
         return "{}: {} - {}".format(self.column_headers, self.value, self.statement.name)
+
+

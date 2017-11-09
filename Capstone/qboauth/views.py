@@ -140,19 +140,19 @@ def apiCall(request):
         company_info_response, status_code = getCompanyBalanceSheet(bearer.accessToken, realmId) # TODO
         if status_code >= 400:
             return HttpResponseServerError()
-    # # company_name = company_info_response['CompanyInfo']['CompanyName']
-    # # address = company_info_response['CompanyInfo']['CompanyAddr']
-    # thing = json.loads(company_info_response)['Rows']
-    # for k,v in thing.items():
-    #     for i in v:
-    #         for x,y in i.items():
-    #             print(y)
-    #         # print(i)
-    #         print("-")
-    # print(thing)
+    company_name = company_info_response['CompanyInfo']['CompanyName']
+    address = company_info_response['CompanyInfo']['CompanyAddr']
+    thing = json.loads(company_info_response)['Rows']
+    for k,v in thing.items():
+        for i in v:
+            for x,y in i.items():
+                print(y)
+            # print(i)
+            print("-")
+    print(thing)
 
-    # return HttpResponse('Company Name: '+company_name+', Company Address: '+address['Line1']+', '+address['City'] + ', ' + ' ' + address['PostalCode'])
-    return HttpResponse(mark_safe(company_info_response))
+    return HttpResponse('Company Name: '+company_name+', Company Address: '+address['Line1']+', '+address['City'] + ', ' + ' ' + address['PostalCode'])
+    # return HttpResponse(mark_safe(company_info_response))
 
 def get_CSRF_token(request):
     token = request.session.get('csrfToken',None)

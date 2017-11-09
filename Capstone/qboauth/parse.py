@@ -5,9 +5,9 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Capstone.settings")
 import django
 
 django.setup()
-from pages.models import Statement, Data
+from pages.models import Statement, Data, Organization
 
-with open("data.json") as file:
+with open("Fixtures/data.json") as file:
     data = json.loads(file.read())
 
 
@@ -161,6 +161,7 @@ document.name = header_dict['ReportName']
 document.start_period = header_dict['StartPeriod']
 document.end_period = header_dict['EndPeriod']
 document.summarize_by = header_dict['SummarizeColumnsBy']
+document.organization = Organization.objects.get(pk=2)
 document.save()
 
 
@@ -170,6 +171,8 @@ for k, v in val_list(detail_list).items():
     val.column_headers = k
     val.value = v
     val.save()
+
+
 
 
 print(header_dict)

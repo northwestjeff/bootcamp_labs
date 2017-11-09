@@ -3,25 +3,6 @@ $('.ui.checkbox').checkbox()
 // TODO A: fix the included ingredients.  They're being subtracted from the total.
 // TODO B: Notifications needed for when CC form is filled incorrectly.  if validform=false:...
 
-// $('checkbox.ui.checkbox').change(function () {
-//     var item = this.children[0];
-//     if (item.checked === true) {
-//         $('.relaxed').append('<li class="item ' + item.name +'" id="' + item.value + '">' + item.value + '</li>');
-//         console.log($('.item').length);
-//     } else if (item.checked === false) {
-//         // console.log(item.checked + "false!!!")
-//         // console.log(item.name + ": should be quac")
-//         // console.log($('.item').filter("#" + item.value))
-//         // $('.relaxed').find("#" + item.name);
-//         console.log($('.item').length);
-//         $('.item').filter(":contains(" + item.value + ")").remove()
-//         console.log($('.item').length);
-//     }
-// });
-// $('element').attr('id', 'value');
-// ADDS TORTILLA CLASS TO ORDER LIST
-// $('.item').remove()
-// $('.relaxed >li:first-child').attr('id', "tortilla")
 
 $('[type=submit]').attr("disabled", true)
 
@@ -45,23 +26,6 @@ $('[name="tortilla"]').change(function () {
    }
 });
 
-//
-// $('input[type="radio"]').change(function () {
-//     // $('.item').remove();
-//     var description = $(this).attr('name');
-//     var menuName = $(this).next().html();
-//     var isChecked = $(this).is(":checked");
-//     // if (isChecked === true) {
-//     //     $('.list').append('<li class="item" name="' + description + '" value="' + menuName + '" id="' + menuName + '">' + menuName + '</li>')
-//     // } else {
-//     //     // $('this').filter(":contains(".remove())
-//     // }
-//     addRemove(description, menuName, isChecked)
-//     console.log("desc: " + description)
-//     console.log("menuName: " + menuName)
-//     console.log("isChecked: " + isChecked)
-// });
-
 
 //
 // Event Listener. If a checkbox is changed, create variables for name
@@ -81,17 +45,6 @@ $('input[type="checkbox"]').change(function () {
 
     }
 
-    // addTotal()
-    // if ($(this).is(":checked")) {
-    //     $('.list').append('<li class="item" name="' + description + '" value="' + menuName + '" id="' + menuName + '">' + menuName + '</li>')
-    // } else {
-    //     $('.item').filter(":contains(" + menuName + ")").remove()
-    // }
-    // console.log("desc: " + description)
-    // console.log("menuName: " + menuName)
-    // console.log("isChecked: " + isChecked)
-    // console.log($(this).attr('name'));
-    // console.log($(this).is(":checked"));
 });
 
 
@@ -224,26 +177,3 @@ $('.form').submit(function () {
     }
 });
 
-
-// invalidFormAlert = function() {
-//
-// }
-//
-
-
-// $('[name="name"]').change(function () {
-//     if (nameValidation() === true)
-// })
-
-
-// URI example from Chris
-// $.each(uriArr, function (index, item) {
-//     console.log(index);
-//     var itemSplit = item.split('=');
-//     uriObj[itemSplit[0]] = itemSplit[1].replace(/\+/g, " ");
-// )}
-
-// $('#submit').click(function () {
-//     event.preventDefault();
-//     console.log($('.error').length)
-// })

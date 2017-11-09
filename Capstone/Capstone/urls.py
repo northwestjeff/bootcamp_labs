@@ -26,5 +26,13 @@ urlpatterns = [
                   url(r'^new_covenant/', pages_views.new_covenant, name='newcovenant'),
                   url(r'^qboauth/', include('qboauth.urls')),
                   url(r'^display/?$', pages_views.display, name='display'),
+                  url(r'^cov/(?P<slug>[\w-]+)', pages_views.covenant, name='cov'),
+                  url(r'^cov_set/(?P<id>[\w-]+)', pages_views.checkthing, name='cov_set'),
+                  url(r'^covenants/', pages_views.all_covenant, name='covenants'),
+                  url(r'^loans/(?P<slug>[\w-]+)', pages_views.view_loan, name='loans'),
+                  url(r'^loans/', pages_views.all_loans, name='loans'),
+                  url(r'^org/$', pages_views.all_organization, name='organization'),
+                  url(r'^organization/(?P<slug>[\w-]+)', pages_views.organization, name='organization'),
+
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)
