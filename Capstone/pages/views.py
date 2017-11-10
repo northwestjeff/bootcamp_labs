@@ -11,6 +11,9 @@ def home(request):
     # organization = Organization.objects.all()
     loans = Loan.objects.all()
     loans_sum = 0
+    temp_list = []
+    for i in loans:
+        temp_list.append(float(i.amount))
     for i in loans:
         loans_sum += i.amount
     covenants = Covenant.objects.all()
@@ -18,7 +21,8 @@ def home(request):
     return render(request, 'pages/home.html', {"client_user": client_user,
                                                "loans": loans,
                                                "loans_sum": loans_sum,
-                                               "covenants": covenants
+                                               "covenants": covenants,
+                                               "temp_list": temp_list
                                                })
 #
 def loan_comp_check(loans):

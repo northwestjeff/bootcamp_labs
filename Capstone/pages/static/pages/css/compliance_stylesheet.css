@@ -34,4 +34,12 @@ h4 {
 .titleName {
   font-size: large; }
 
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white; }
+
 /*# sourceMappingURL=compliance_stylesheet.css.map */
