@@ -46,10 +46,21 @@ h4 {
 }
 
 .chart div {
+  //border: 1px solid white;
   font: 10px sans-serif;
   background-color: steelblue;
   text-align: right;
   padding: 3px;
   margin: 1px;
   color: white;
+  //text-shadow: 2px 2px black;
+}
+
+.width div {
+  text-shadow: 1px 1px black;
+}
+
+section {
+  border: 1px solid white;
+  padding: 5px ;
 }

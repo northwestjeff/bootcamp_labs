@@ -7,11 +7,11 @@ from django.utils.text import slugify
 from django.db.models.signals import pre_save
 
 payment_schedule_options = (
-    ('WEEKLY', 'weekly'),
-    ('MONTHLY', 'monthly'),
-    ('QUARTERLY', 'quarterly'),
-    ('SEMI-ANNUALLY', 'semi-annually'),
-    ('ANNUALLY', 'annually')
+    ('Weekly', 'weekly'),
+    ('Monthly', 'monthly'),
+    ('Quarterly', 'quarterly'),
+    ('Semi-annually', 'semi-annually'),
+    ('Annually', 'annually')
 )
 
 
@@ -57,9 +57,8 @@ class Loan(models.Model):
 
 
 indicator_options = (
-    ('DSCR', 'Debt Service Coverage Ratio'),
-    ('TOTAL_LIABILITIES', 'Total Liabilities'),
-    ('CURRENT_RATIO', 'Current Ratio'),
+    ('Total Liabilities', 'Total Liabilities'),
+    ('Current Ratio', 'Current Ratio'),
 )
 
 operator_options = (

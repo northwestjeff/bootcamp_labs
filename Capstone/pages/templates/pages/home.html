@@ -7,7 +7,11 @@
             <h3>Portfolio Summary</h3>
             <p>Total Loans: {{ loans|length }}</p>
             <p>Total Portfolio Amount: {{ loans_sum }} </p>
-            <div class="chart"></div>
+            <section id="bar-chart">
+                <div class="chart"></div>
+            </section>
+
+
         </div>
         <table class="table table-bordered hover">
             <thead>
@@ -42,16 +46,31 @@
             {% endfor %}
         ]
 
+        function getLarge(total, num) {
+            if (total >= num) {
+                return total
+            } else {
+                return num
+            }
+        }
+
+        var largest = data.reduce(getLarge)
+        console.log(largest)
+
+
         d3.select(".chart")
             .selectAll("div")
             .data(data)
             .enter()
             .append("div")
             .style("width", function (d) {
-                return d + "px";
+                var wid = (d / largest) * 100
+                return wid + "%";
             })
             .text(function (d) {
-                return d;
+                if (d > 4000) {
+                    return d;
+                } return "..."
             });
     </script>
 {% endblock %}

@@ -42,4 +42,11 @@ h4 {
   margin: 1px;
   color: white; }
 
+.width div {
+  text-shadow: 1px 1px black; }
+
+section {
+  border: 1px solid white;
+  padding: 5px; }
+
 /*# sourceMappingURL=compliance_stylesheet.css.map */

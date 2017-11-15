@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from pages.forms import NewLoanForm, NewCovenantForm
+from django.template.loader import render_to_string
 
 from pages.models import ClientUser, Loan, Covenant, Statement, \
     Organization  # , Borrower, Portfolio, NoncompliantPortfolio
@@ -14,6 +15,7 @@ def home(request):
     temp_list = []
     for i in loans:
         temp_list.append(float(i.amount))
+    temp_list.sort()
     for i in loans:
         loans_sum += i.amount
     covenants = Covenant.objects.all()
@@ -24,6 +26,8 @@ def home(request):
                                                "covenants": covenants,
                                                "temp_list": temp_list
                                                })
+
+
 #
 def loan_comp_check(loans):
     for i in loans:
@@ -32,6 +36,7 @@ def loan_comp_check(loans):
                 pass
             else:
                 i.loan_compliance = False
+
 
 #
 
@@ -73,6 +78,7 @@ def covenant(request, slug):
     cov = Covenant.objects.get(slug=this_slug)
     cov_val = ""
     if cov.comparison:
+        # print(cov.loans.organization.statements.all().order_by(cov.loans.organization.statements.name))
         for i in cov.loans.organization.statements.all()[0].data.all():
             if i.column_headers == cov.comparison:
                 cov_val = float(i.value)
@@ -90,7 +96,6 @@ def covenant(request, slug):
     return render(request, 'pages/cov.html', {"covenant": cov,
                                               "values": cov_val
                                               })
-
 
 
 def all_covenant(request):
@@ -117,7 +122,14 @@ def checkthing(request, id):
         return JsonResponse({'message': 'success'})
     return JsonResponse({'message': 'fail'})
 
+
 # def thing_value(request, list, key):
 #     for i in list:
 #
 #
+def statement_display(request):
+    if request.method == "POST":
+        statement = Statement.objects.get(pk=request.POST.get("pk"))
+        return HttpResponse(render_to_string("pages/_statement.html", {"x": statement
+
+                                                                       }))

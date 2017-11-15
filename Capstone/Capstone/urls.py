@@ -33,6 +33,7 @@ urlpatterns = [
                   url(r'^loans/', pages_views.all_loans, name='loans'),
                   url(r'^org/$', pages_views.all_organization, name='organization'),
                   url(r'^organization/(?P<slug>[\w-]+)', pages_views.organization, name='organization'),
+                  url(r'^cov_statement/', pages_views.statement_display, name='cov_statement')
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL,
                                                                                            document_root=settings.MEDIA_ROOT)

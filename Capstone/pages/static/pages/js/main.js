@@ -1,4 +1,4 @@
-$('input[type="checkbox"]').change(function () {
+$(document).on("change", 'input[type="checkbox"]', function () {
     console.log($(this));
         var isChecked = $(this).is(":checked");
         var account = $(this)[0].offsetParent.id;
@@ -20,6 +20,9 @@ $('input[type="checkbox"]').change(function () {
         }
     }
 )
+
+// 'input[type="checkbox"]'
+
 
 
 
