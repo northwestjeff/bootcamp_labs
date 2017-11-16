@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '6=^(zyp41#c^rjo6uxflg+@=v#bffxy!x_s3!6y9)3rv1&m)f5'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,17 +71,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Capstone.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# if 'RDS_DB_NAME' in os.environ:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': os.environ['RDS_DB_NAME'],
+#             'USER': os.environ['RDS_USERNAME'],
+#             'PASSWORD': os.environ['RDS_PASSWORD'],
+#             'HOST': os.environ['RDS_HOSTNAME'],
+#             'PORT': os.environ['RDS_PORT'],
+#         }
+#     }
+# else:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -103,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -117,31 +124,32 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-os.path.join(BASE_DIR, 'pages', 'static'),
-os.path.join(BASE_DIR, 'qboauth', 'static')
+    os.path.join(BASE_DIR, 'pages', 'static'),
+    os.path.join(BASE_DIR, 'qboauth', 'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
+
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
 DISCOVERY_DOCUMENT = 'https://developer.api.intuit.com/.well-known/openid_sandbox_configuration/'
 CLIENT_ID = 'Q0AaC7Zk5JlBRJqGjBkLthuJ7RV8Jpdg8xab0vtviZAYJWF16g'
 CLIENT_SECRET = 's5I3D2Wn22tsbcXcUwkdrVV5d1LGcH7bTimWD6Bb'
 REDIRECT_URI = 'http://localhost:8000/qboauth/authCodeHandler'
 ACCOUNTING_SCOPE = 'com.intuit.quickbooks.accounting'
-OPENID_SCOPES = ['openid','profile','email','phone','address','Account']
-GET_APP_SCOPES = ['com.intuit.quickbooks.accounting', 'openid','profile','email','phone','address']
+OPENID_SCOPES = ['openid', 'profile', 'email', 'phone', 'address', 'Account']
+GET_APP_SCOPES = ['com.intuit.quickbooks.accounting', 'openid', 'profile', 'email', 'phone', 'address']
 SANDBOX_QBO_BASEURL = 'https://sandbox-quickbooks.api.intuit.com'
 SANDBOX_PROFILE_URL = 'https://sandbox-accounts.platform.intuit.com/v1/openid_connect/userinfo'
 ID_TOKEN_ISSUER = 'https://oauth.platform.intuit.com/op/v1'
