@@ -4,7 +4,7 @@ $(document).on("change", 'input[type="checkbox"]', function () {
         var account = $(this)[0].offsetParent.id;
         if ($(this).is(":checked") === true) {
             // $('#check_a').append(account);
-            
+
             $.ajax({
                url: '/cov_set/' + $('#cov_id').html(),
                type: 'post',
