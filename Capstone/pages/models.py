@@ -45,10 +45,6 @@ class Loan(models.Model):
             self.slug = self._get_unique_slug()
         super().save()
 
-    # def make_slug(self):
-    #     passed_slug = "{} {}".format(self.loan_id, self.organization.business_name)
-    #     self.slug = slugify(passed_slug)
-
     def __str__(self):
         return self.cov_id
 
@@ -134,11 +130,6 @@ class Organization(models.Model):
             self.slug = self._get_unique_slug()
         super().save()
 
-    # def make_slug(self):
-    #     self.slug = slugify(self.business_name)
-
-    # portfolio = models.OneToOneField('Portfolio')
-
     def __str__(self):
         return self.business_name
 
@@ -180,6 +171,12 @@ class Statement(models.Model):
     end_period = models.DateField()
     summarize_by = models.CharField(max_length=100)
     organization = models.ForeignKey(Organization, related_name='statements', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.end_period)
+
+    class Meta:
+        ordering = ['end_period']
 
 
 class Data(models.Model):

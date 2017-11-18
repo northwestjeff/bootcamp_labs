@@ -9,6 +9,10 @@ body {
   background-color: #EAE0CC;
   margin-bottom: 15px; }
 
+a.tab:visited {
+  color: white;
+  text-decoration: none; }
+
 h1 {
   padding: 10px 10px; }
 
@@ -25,8 +29,7 @@ h4 {
 .tableTitle, .titleName {
   margin: 8px 5px;
   background-color: #EAE0CC;
-  border: solid 1px white;
-  margin: 0; }
+  border: solid 1px white; }
 
 .portSummary {
   border: solid white 1px; }

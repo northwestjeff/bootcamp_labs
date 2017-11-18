@@ -31,17 +31,17 @@
         </tbody>
         {#        {{ loans.covenants.all|length }}#}
     </table>
-    <h2>Financial Statements</h2><br>
+{#    <h2>Financial Statements</h2><br>#}
     {#    {{ loans.organization.statements.all }}#}
-
-    {% for i in loans.organization.statements.all %}
-        {{ i.name }}
-        {{ i.start_period }} <br>
-        {% for x in i.data.all %}
-            {{ x.column_headers }}
-            {{ x.value }}<br>
-            <br>
-        {% endfor %}
+{##}
+{#    {% for i in loans.organization.statements.all %}#}
+{#        {{ i.name }}#}
+{#        {{ i.start_period }} <br>#}
+{#        {% for x in i.data.all %}#}
+{#            {{ x.column_headers }}#}
+{#            {{ x.value }}<br>#}
+{#            <br>#}
+{#        {% endfor %}#}
 
         {#        <table class="table-condensed">#}
         {#        <thead>#}
@@ -58,7 +58,7 @@
         {#                <th>{{ i.organization.statements.value }}</th>#}
         {#            </tr>#}
         {#        {% endfor %}#}
-    {% endfor %}
+{#    {% endfor %}#}
     </table>
 
 {% endblock %}

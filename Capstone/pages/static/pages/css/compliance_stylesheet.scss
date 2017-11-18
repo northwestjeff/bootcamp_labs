@@ -12,6 +12,14 @@ body {
   margin-bottom: 15px;
 }
 
+a.tab:visited{
+  color: white;
+  text-decoration: none;
+}
+//a.tab:visited {
+//  color: white;
+//}
+
 h1 {
   padding: 10px 10px;
 }
@@ -33,7 +41,7 @@ h4 {
   margin: 8px 5px;
   background-color: #EAE0CC;
   border: solid 1px white;
-  margin: 0;
+  //margin: 0;
 }
 
 .portSummary {

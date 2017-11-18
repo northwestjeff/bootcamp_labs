@@ -4,7 +4,7 @@
 {% block content %}
     <div class="col-10">
         <div class="jumbotron">
-            <h3>Portfolio Summary</h3>
+            <h3><a href="#portfolio">Portfolio Summary</a></h3>
             <p>Total Loans: {{ loans|length }}</p>
             <p>Total Portfolio Amount: {{ loans_sum }} </p>
             <section id="bar-chart">
@@ -12,6 +12,11 @@
             </section>
 
 
+        </div>
+    <div>
+            <h4 id="portfolio">
+                Portfolio
+            </h4>
         </div>
         <table class="table table-bordered hover">
             <thead>
@@ -32,6 +37,33 @@
                 </tr>
             {% endfor %}
             </tbody>
+        </table>
+    <div>
+            <h4>
+                Noncompliant Covenants
+            </h4>
+        </div>
+     <table class="table table-bordered hover">
+            <thead>
+            <tr>
+                <th>Covenant ID #</th>
+                <th>Organization Name</th>
+                <th>Loan Amount</th>
+                <th>Compliance</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in covenants %}
+                {% if not i.compliance %}
+                <tr>
+                    <td><a href="{% url 'cov' i.slug %}">{{ i.cov_id }}</a></td>
+                    <td><a href="{% url 'organization' i.loans.organization.slug %}">{{ i.loans.organization }}</a></td>
+                    <td>{{ i.loans.amount }}</td>
+                    <td>{{ i.compliance }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
 
         </table>
     </div>
@@ -42,7 +74,6 @@
         var data = [
             {% for i in temp_list %}
                 {{ i }},
-
             {% endfor %}
         ]
 
@@ -69,7 +100,7 @@
             })
             .text(function (d) {
                 if (d > 4000) {
-                    return d;
+                    return '$' + d;
                 } return "..."
             });
     </script>

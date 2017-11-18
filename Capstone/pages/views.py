@@ -76,10 +76,11 @@ def all_organization(request):
 def covenant(request, slug):
     this_slug = slug
     cov = Covenant.objects.get(slug=this_slug)
-    cov_val = ""
+    # cov_val = ""
+    cov_val = float()
     if cov.comparison:
-        # print(cov.loans.organization.statements.all().order_by(cov.loans.organization.statements.name))
-        for i in cov.loans.organization.statements.all()[0].data.all():
+        print(cov.loans.organization.statements.all().order_by('-end_period'))
+        for i in cov.loans.organization.statements.all().order_by('-end_period')[0].data.all():
             if i.column_headers == cov.comparison:
                 cov_val = float(i.value)
     if cov.operator_options == "Greater Than" and cov_val > cov.standard:

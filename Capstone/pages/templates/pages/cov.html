@@ -8,9 +8,9 @@
             <th>Organization Name</th>
             <th>Loan Amount</th>
             <th>Condition</th>
-            <th>Check A</th>
+            <th>Measure</th>
             <Th>Operator</Th>
-            <th>Check B</th>
+            <th>Standard</th>
             <th>Compliant</th>
         </tr>
         </thead>
@@ -21,11 +21,11 @@
                 <a href="{% url 'organization' covenant.loans.organization.slug %}">{{ covenant.loans.organization.business_name }}</a>
             </td>
             <td id="loan_amout">{{ covenant.loans.amount }}</td>
-            <td id="covenant">{{ covenant.indicator }} <br> {{ covenant.operator_options }} <br>{{ covenant.standard }}
+            <td id="covenant">{{ covenant.indicator }} <br> {{ covenant.operator_options }} <br>${{ covenant.standard }}
             </td>
             <td id="check_a">{% if covenant.comparison %}{{ covenant.comparison }}{% endif %}</td>
             <td id="operator"></td>
-            <td id="check_b">{% if values %}{{ values }}{% endif %}</td>
+            <td id="check_b">{% if values %}${{ values }}{% endif %}</td>
             <td id="compliant">{{ covenant.compliance }}</td>
         </tr>
         </tbody>
