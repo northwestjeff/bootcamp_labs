@@ -25,7 +25,6 @@ class Account:
             # print("False: {} - {} is :".format(amount, self.balance), int(amount) - int(self.balance))
             return False
 
-
     def withdraw(self, amount):
         if int(self.balance) - int(amount) >= 0:
             self.balance -= int(amount)
