@@ -72,7 +72,6 @@ class Main:
             if leave != "1":
                 atm = False
 
-
 game = Main()
 game.atm()
-#
+
