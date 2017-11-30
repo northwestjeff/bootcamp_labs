@@ -1,15 +1,15 @@
 import random
 import time
 
+
 class Card:
+    def __init__(self, suit, rank,
+                 card_value=0):  # Attributes of cards.  card_values=0 is to not display the value but keep the data for later calcs.
+        self.suit = suit  # Diamond, Heart, club, spades
+        self.rank = rank  # Ace, two, Jack, etc.
+        self.card_value = card_value  # 1, 2, 3, 10  [Ace being 1 or 11 wil be managed later.]
 
-    def __init__(self, suit, rank, card_value=0): # Attributes of cards.  card_values=0 is to not display the value but keep the data for later calcs.
-        self.suit = suit # Diamond, Heart, club, spades
-        self.rank = rank # Ace, two, Jack, etc.
-        self.card_value = card_value # 1, 2, 3, 10  [Ace being 1 or 11 wil be managed later.]
-
-
-    def card_name (self): # Creates a concatonated card name
+    def card_name(self):  # Creates a concatonated card name
         card_name = "{} {}".format(self.rank, self.suit)
         return card_name
 
@@ -18,7 +18,6 @@ class Card:
 
 
 class Deck:
-
     def __init__(self):
         self.deck = self.deck_builder()
 
@@ -29,13 +28,13 @@ class Deck:
                       "Ten": 10, "Jack": 10, "Queen": 10, "King": 10}
 
         for i in suit:
-            for x,y in card_value.items():
+            for x, y in card_value.items():
                 deck.append(Card(i, x, y))
         random.shuffle(deck)
         return deck
 
-class Hand:
 
+class Hand:
     def __init__(self, holding, name):
         self.holding = holding
         self.bust = False
@@ -47,6 +46,7 @@ class Hand:
 
     def __str__(self):
         return "{} for a total of {}. ".format(self.holding, self.hand_value)
+
 
 class Dealer(Hand):
     def dealer_deal(self):
@@ -64,8 +64,8 @@ class Game:
         random.shuffle(self.full_deck)
 
     def cut(self):
-        split_deck = random.randrange(2,50)
-        self.full_deck.deck = self.full_deck.deck[split_deck:-1] + self.full_deck.deck[0:split_deck+1]
+        split_deck = random.randrange(2, 50)
+        self.full_deck.deck = self.full_deck.deck[split_deck:-1] + self.full_deck.deck[0:split_deck + 1]
 
     def initial_deal(self):
         self.dealer.holding = []
@@ -73,7 +73,6 @@ class Game:
         for i in range(2):
             for p in self.players_list:
                 p.take_card(self.full_deck.deck.pop(0))
-
 
     def hit(self, hand):
         time.sleep(1)
@@ -143,28 +142,6 @@ class Game:
                 self.running_total(hand)
                 playing = False
 
-        # else:
-        # print("{}'s hand: ".format(hand.name))
-        # for i in hand.holding:
-        #     print(i)
-        # print("")
-
-        # playing = True
-        # while hand.bust is False and playing is True:
-        #     print("")
-        #     choice = str(input("Press 1 to hit, 2 to stand: "))
-        #     print("")
-        #     if choice == "1":
-        #         self.hit(hand)
-        #         self.running_total(hand)
-        #         self.ace_check(hand)
-        #         self.bust_check(hand)
-        #     elif choice == "2":
-        #         self.running_total(hand)
-        #         playing = False
-        #     else:
-        #         pass
-
     def dealer_show(self, hand):
         print("The dealer reveals his hand....")
         for i in hand.holding:
@@ -180,7 +157,6 @@ class Game:
                 self.bust_check(hand)
                 running = False
 
-
     def scoring(self, player, dealer):
         if dealer.hand_value == player.hand_value:
             print("")
@@ -190,7 +166,6 @@ class Game:
             print("The Dealer wins!")
         else:
             print("You win!!!!  ")
-
 
     def start_game(self):
         self.initial_deal()
@@ -208,11 +183,3 @@ while play == "y":
     print("")
     play = input("Type 'y' to play again, 'n' to quit.")
     print("")
-
-
-
-
-
-
-
-

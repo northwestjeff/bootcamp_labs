@@ -98,26 +98,6 @@ def google_name(name_to_search):
 
 
 
-# def get_phone_number(url):
-#     page_driver = webdriver.Chrome()
-#     page_driver.get(url)
-#     timeout = 20
-#     try:
-#         WebDriverWait(page_driver, timeout).until(EC.visibility_of_element_located((By.XPATH, "//span[@class='ya_item']")))
-#         print("successful try")
-#     except TimeoutException:
-#         print("timeout!!!")
-#         page_driver.quit()
-#     phone_number_div = page_driver.find_element_by_xpath("//div[@id='dnn_ctr1735_View_SPL_DivPhoneName']")
-#     phone_number = phone_number_div.find_elements_by_xpath(".//span")
-#     print(len(phone_number))
-#     phone_number = phone_number[1].text
-
-
-
-
-
-
 
 # def next_page_click(next_button):
 #     next_button.click()
