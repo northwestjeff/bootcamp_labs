@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
 
 import requests, html5lib, time
 
@@ -46,13 +47,15 @@ def get_names():
     addresses = [x.text for x in address_parent]
     print("address: {}".format(addresses))
     #
-    link_parent = driver.find_elements_by_xpath("//h3[@class='ya_school-location-name']//a")  # .get_attribute("href")
+    link_parent = driver.find_elements_by_xpath("//h3[@class='ya_school-location-name']//a")
+    print("link parent: {}".format(link_parent))
     link_name = [x.text for x in link_parent]
+    print("link name: {}".format(link_name))
     link_url = [x.get_attribute('href') for x in link_parent]
     #
     for x, y, z in (zip(link_name, link_url, addresses)):
         directory[x] = y, z
-
+    print("directory: {}".format(directory))
     return directory
 
 
@@ -66,6 +69,9 @@ def next_page():
         return True
     except NoSuchElementException:
         print('no element')
+        return False
+    except StaleElementReferenceException:
+        print("stale")
         return False
 
 
@@ -84,7 +90,7 @@ def google_name(name_to_search):
     search = google_driver.find_element_by_name('q')
     search.send_keys(name_to_search + " facebook")
     google_driver.find_element_by_name("btnI").click()
-    time.sleep(8)  # sleep for 5 seconds so you can see the results
+    time.sleep(8)  # sleep for 8 seconds so you can see the results
     phone = google_driver.find_element_by_class_name("_4bl9")
     phone = phone.find_element_by_tag_name("div")
     print("phone number: {}".format(phone))
@@ -102,13 +108,14 @@ def google_name(name_to_search):
 # def next_page_click(next_button):
 #     next_button.click()
 
-
-# next_enabled = True
-# while next_enabled == True:
-#     crawl()
-#     get_names()
-#     time.sleep(10)
-#     next_enabled = next_page()
+#  LOOP through pages
+next_enabled = True
+while next_enabled == True:
+    crawl()
+    get_names()
+    time.sleep(10)
+    next_enabled = next_page()
+    print("Total directory: {}".format(directory))
 
 
 # get_phone_number(single_page)
@@ -117,8 +124,8 @@ def google_name(name_to_search):
 # crawl()
 # get_names()
 # next_page()
-search = "Asmi Yoga Bend"
-google_name(search)
+# search = "Asmi Yoga Bend"
+# google_name(search)
 # names = []
 # for x in school_names:
 #     names.append(x.text)
