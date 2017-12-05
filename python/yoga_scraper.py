@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,21 +10,20 @@ from selenium.common.exceptions import StaleElementReferenceException
 
 import requests, html5lib, time
 
-# TODO create list for URL lookup for more states/cities
-# TODO create crawler that looks into each URL and pulls phone number
-
-
-
 #  Oregon search in the Directory
 url = 'https://www.yogaalliance.org/Directory-Registrants?type=School&location=Oregon,%20United%20States'
-#
+# url = "https://www.yogaalliance.org/Directory-Registrants?type=School&location=Eugene,%20OR,%20United%20States"
+
 # create new instance of chrome
 driver = webdriver.Chrome()
-#
-# Site of interest
+
+# Direct driver to site of interest
 driver.get(url)
 
-directory = {}
+list_directory = []
+file = open("yogaresults.txt", 'w')
+
+crawl_criteria = "//div[@class='ya_school-name']"
 
 
 def crawl():
@@ -38,25 +38,33 @@ def crawl():
 
 
 def get_names():
-    school_names = driver.find_elements_by_xpath("//div[@class='ya_school-name']")
-    names = [x.text for x in school_names]
-    #
-    # studio_pages = driver.find_elements_by_xpath("//div[@class='ya_school-location-name']/a")
-    #
     address_parent = driver.find_elements_by_xpath("//div[@class='ya_school-address']")
     addresses = [x.text for x in address_parent]
+    addresses = [str(i) for i in addresses]
+    addresses = [each.replace("\n", " ") for each in addresses]
     print("address: {}".format(addresses))
-    #
+
+    # Creates list of yoga names on the page
     link_parent = driver.find_elements_by_xpath("//h3[@class='ya_school-location-name']//a")
-    print("link parent: {}".format(link_parent))
     link_name = [x.text for x in link_parent]
     print("link name: {}".format(link_name))
-    link_url = [x.get_attribute('href') for x in link_parent]
+
+    # link_url = [x.get_attribute('href') for x in link_parent]
     #
-    for x, y, z in (zip(link_name, link_url, addresses)):
-        directory[x] = y, z
-    print("directory: {}".format(directory))
-    return directory
+    # for x, y, z in (zip(link_name, link_url, addresses)):
+    #     directory[x] = y, z
+    # print("directory: {}".format(directory))
+    make_list(zip(link_name, addresses))
+
+    with open("yogafile.csv", "w") as f:
+        wr = csv.writer(f)
+        wr.writerows(list_directory)
+
+
+def remove_n(list):
+    for i in list:
+        if "\n" in i[1]:
+            i[1].split("\n")
 
 
 def next_page():
@@ -65,6 +73,7 @@ def next_page():
         next_not_disabled = driver.find_element_by_xpath(
             "//a[@title='Go to the next page'][not(contains(@class, 'k-state-disabled'))]")
         next_button = driver.find_element_by_xpath("//span[contains(@class, 'k-i-arrow-e')]")
+        print("found next button")
         next_button.click()
         return True
     except NoSuchElementException:
@@ -95,39 +104,23 @@ def google_name(name_to_search):
     phone = phone.find_element_by_tag_name("div")
     print("phone number: {}".format(phone))
 
-
-
     google_driver.quit()
 
 
+def make_list(zipped):
+    for x in zipped:
+        list_directory.append(list(x))
 
 
+def writer(list):
+    for i in list:
+        file.writelines(i)
 
 
-
-# def next_page_click(next_button):
-#     next_button.click()
-
-#  LOOP through pages
+# LOOP through pages
 next_enabled = True
 while next_enabled == True:
     crawl()
     get_names()
-    time.sleep(10)
     next_enabled = next_page()
-    print("Total directory: {}".format(directory))
-
-
-# get_phone_number(single_page)
-
-#
-# crawl()
-# get_names()
-# next_page()
-# search = "Asmi Yoga Bend"
-# google_name(search)
-# names = []
-# for x in school_names:
-#     names.append(x.text)
-
-print(directory)
+    time.sleep(7)
