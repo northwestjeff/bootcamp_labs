@@ -34,7 +34,7 @@ def crawl():
     except TimeoutException:
         print("Timed out waiting for page to loan")
         driver.quit()
-        # Get all the names of yoga schools
+
 
 
 def get_names():
