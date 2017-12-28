@@ -74,8 +74,7 @@ $('.tile').click(function () {
 
 // Click start to begin the game
 $('#start').click(function () {
-    // console.log("Start!")
-    // Event.preventDefault();
+
     startHoleList();
     moleInterval();
 })
