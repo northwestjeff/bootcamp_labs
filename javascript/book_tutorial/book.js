@@ -1,13 +1,4 @@
-
-
-
 myLibrary = [];
-
-const learn = Book("Learn Python the Hardway", "Stevens", 200, true);
-const gonegirl = Book("Gone Girl", "Jackson", 360, true);
-const thecircle = Book("The Circle", "Miller", 120, false)
-
-
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -19,16 +10,25 @@ function Book(title, author, pages, read) {
     }
 }
 
+
+var learn = new Book("Learn Python the Hardway", "Stevens", 200, true);
+var gonegirl = new Book("Gone Girl", "Jackson", 360, true);
+var thecircle = new Book("The Circle", "Miller", 120, false)
+
+myLibrary.push(learn, gonegirl, thecircle)
+
+
+
 function addBook() {
 
 }
 
 
-function render() {
-    for (i = 0; i < myLibrary.length; i ++) {
-        const main = document.getElementById('main');
+function render(array) {
+    for (i = 0; i < myLibrary.length; i++) {
+        const main = document.getElementById('shelf');
         const div = document.createElement("div")
-        div.innerHTML = myLibrary[i]
+        div.innerHTML = array[i].title;
         main.appendChild(div)
 
     }
@@ -40,4 +40,4 @@ function render() {
 //
 
 
-render()
+render(myLibrary)
