@@ -10,7 +10,6 @@ function Book(title, author, pages, read) {
     }
 }
 
-
 var learn = new Book("Learn Python the Hardway", "Stevens", 200, true);
 var gonegirl = new Book("Gone Girl", "Jackson", 360, true);
 var thecircle = new Book("The Circle", "Miller", 120, false);
@@ -71,15 +70,29 @@ function render(array) {
         removeButton.className = 'remove-button';
         // removeButton.id = 'remove-button';
         removeButton.type = 'button';
-        removeButton.value = "Remove Book from Library";
+        removeButton.value = "Remove Book from Shelf";
         book.appendChild(removeButton);
     }
 }
 
+function removeClick() {
+    const button = document.getElementsByClassName('remove-button');
+    for (i = 0; i < button.length; i++) {
+        button[i].addEventListener('click', function () {
+            console.log(this.parentElement.style.display = 'none')
+                // button[i].parentElement.style.display = 'none'
+            }
+            , false);
+    }
 
-// const button = document.getElementsByClassName('read-button');
-// button[0].addEventListener('click', console.log('clickity'));
-//
+}
+
+function newBook() {
+    const button = document.getElementById('new-book');
+    button.prompt("Please Enter Book Details:")
+
+}
+
 
 // NEW BOOK button that pops up a form
 // Add event listener to 'Mark Read!' button to change the .read to true
@@ -88,8 +101,4 @@ function render(array) {
 
 
 render(myLibrary);
-
-const button = document.getElementsByClassName('read-button');
-button[0].addEventListener('click', console.log('clickity'));
-
-
+removeClick()
