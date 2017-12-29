@@ -4,8 +4,12 @@
   border: dotted 1px floralwhite;
 }
 
-#new-book {
+#new-book-button {
   margin-bottom: 10px;
+}
+
+#new-book-form {
+  display: none;
 }
 
 .book {
@@ -15,3 +19,4 @@
 .title {
   text-decoration: underline;
 }
+

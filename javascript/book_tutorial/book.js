@@ -17,8 +17,22 @@ var thecircle = new Book("The Circle", "Miller", 120, false);
 myLibrary.push(learn, gonegirl, thecircle);
 
 
-function addBook(newBook) {
+function addBookSection(newBook) {
+    const buttonClick = document.getElementById('new-book-button')
+    buttonClick.addEventListener('click', function () {
+        console.log('new book button clicked')
+        const newBookSection = document.getElementById('new-book-form')
+        newBookSection.style.display = 'block';
+    })
 
+}
+
+function newBookSubmission() {
+    const submission = document.querySelector('#new-book-form');
+    submission.onSubmit = function (e) {
+        console.log(e)
+        e.preventDefault()
+    }
 }
 
 
@@ -101,4 +115,6 @@ function newBook() {
 
 
 render(myLibrary);
-removeClick()
+removeClick();
+addBookSection();
+newBookSubmission();
