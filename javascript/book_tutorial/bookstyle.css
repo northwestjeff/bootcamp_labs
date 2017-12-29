@@ -9,4 +9,7 @@
 .book {
   border: 1px black solid; }
 
+.title {
+  text-decoration: underline; }
+
 /*# sourceMappingURL=bookstyle.css.map */

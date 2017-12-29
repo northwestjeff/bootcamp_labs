@@ -13,31 +13,83 @@ function Book(title, author, pages, read) {
 
 var learn = new Book("Learn Python the Hardway", "Stevens", 200, true);
 var gonegirl = new Book("Gone Girl", "Jackson", 360, true);
-var thecircle = new Book("The Circle", "Miller", 120, false)
+var thecircle = new Book("The Circle", "Miller", 120, false);
 
-myLibrary.push(learn, gonegirl, thecircle)
+myLibrary.push(learn, gonegirl, thecircle);
 
 
-
-function addBook() {
+function addBook(newBook) {
 
 }
 
 
 function render(array) {
     for (i = 0; i < myLibrary.length; i++) {
-        const main = document.getElementById('shelf');
-        const div = document.createElement("div")
-        div.innerHTML = array[i].title;
-        main.appendChild(div)
 
+        // CREATES BOOK
+        const shelf = document.getElementById('shelf');
+        const div = document.createElement("div");
+        shelf.appendChild(div);
+        div.className = 'book';
+        div.id = i;
+
+        // TITLE SECTION
+        const book = document.getElementById(i);
+        const bookTitle = document.createElement('h2');
+        bookTitle.className = 'title';
+        book.appendChild(bookTitle);
+        bookTitle.innerHTML = array[i].title;
+
+        //AUTHOR SECTION
+        const bookAuthor = document.createElement('h4');
+        bookAuthor.className = 'author';
+        book.appendChild(bookAuthor);
+        bookAuthor.innerHTML = "By: " + array[i].author;
+
+        // PAGES SECTION
+        const bookPages = document.createElement('p');
+        bookPages.classname = 'pages';
+        book.appendChild(bookPages);
+        bookPages.innerHTML = array[i].pages + ' pages';
+
+        // READ/UNREAD SECTIONS
+        const bookRead = document.createElement('p');
+        bookRead.className = 'read';
+        book.appendChild(bookRead);
+        if (array[i].read) {
+            bookRead.innerHTML = 'I have read this book.'
+        } else {
+            bookRead.innerHTML = 'I have not read this book, yet';
+            const bookButton = document.createElement('input');
+            bookButton.className = 'read-button';
+            bookButton.id = 'read-button';
+            bookButton.type = 'button';
+            bookButton.value = "Mark Read!";
+            book.appendChild(bookButton);
+        }
+        const removeButton = document.createElement('input');
+        removeButton.className = 'remove-button';
+        // removeButton.id = 'remove-button';
+        removeButton.type = 'button';
+        removeButton.value = "Remove Book from Library";
+        book.appendChild(removeButton);
     }
 }
 
+
+// const button = document.getElementsByClassName('read-button');
+// button[0].addEventListener('click', console.log('clickity'));
+//
+
 // NEW BOOK button that pops up a form
-// add a button for read/unread
+// Add event listener to 'Mark Read!' button to change the .read to true
 // add a button to remove from library
 //
 
 
-render(myLibrary)
+render(myLibrary);
+
+const button = document.getElementsByClassName('read-button');
+button[0].addEventListener('click', console.log('clickity'));
+
+
