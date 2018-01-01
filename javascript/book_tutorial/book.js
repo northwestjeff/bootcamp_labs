@@ -14,13 +14,19 @@ var learn = new Book("Learn Python the Hardway", "Stevens", 200, true);
 var gonegirl = new Book("Gone Girl", "Jackson", 360, true);
 var thecircle = new Book("The Circle", "Miller", 120, false);
 
-myLibrary.push(learn, gonegirl, thecircle);
 
+function addBookToLibrary(book) {
+    myLibrary.push(book)
+}
+// myLibrary.push(learn, gonegirl, thecircle);
+addBookToLibrary(learn);
+addBookToLibrary(gonegirl);
+addBookToLibrary(thecircle);
 
 function addBookSection(newBook) {
     const buttonClick = document.getElementById('new-book-button')
     buttonClick.addEventListener('click', function () {
-        console.log('new book button clicked')
+        console.log('new book button clicked');
         const newBookSection = document.getElementById('new-book-form')
         newBookSection.style.display = 'block';
     })
@@ -28,10 +34,19 @@ function addBookSection(newBook) {
 }
 
 function newBookSubmission() {
-    const submission = document.querySelector('#new-book-form');
-    submission.onSubmit = function (e) {
-        console.log(e)
-        e.preventDefault()
+    const form = document.querySelector('#new-book-form');
+    const submit = document.getElementById('new-submit')
+    form.onSubmit = function (e) {
+        console.log(form);
+        // e.preventDefault();
+        // // const {title, author, pages, read } = form;
+        // console.log(read.value);
+        // addBookToLibrary(new Book(
+        //     title.value,
+        //     author.value,
+        //     pages.value,
+        //     read.value
+        // ))
     }
 }
 
