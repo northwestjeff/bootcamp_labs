@@ -33,24 +33,26 @@ function addBookSection(newBook) {
 
 }
 
-function newBookSubmission() {
-    const form = document.querySelector('#new-book-form');
-    const submit = document.getElementById('new-submit')
-    form.onSubmit = function (e) {
-        console.log(form);
-        // e.preventDefault();
-        // // const {title, author, pages, read } = form;
-        // console.log(read.value);
-        // addBookToLibrary(new Book(
-        //     title.value,
-        //     author.value,
-        //     pages.value,
-        //     read.value
-        // ))
-    }
-}
+
+// SUBMIT NEW BOOK TO SHELF
+const form = document.querySelector('#new-book-form');
+form.onsubmit = function (e) {
+    e.preventDefault();
+    console.log(form.title.value);
+    // INSTANTIATES BOOK OBJECT WITH FORM VALUES PASSED-IN
+    addBookToLibrary(new Book(
+        form.title.value,
+        form.author.value,
+        form.pages.value,
+        form.read.value
+    ));
+    const shelf = document.getElementById("shelf");
+    shelf.innerHTML = "" //DELETES SHELF CONTENTS
+    render(myLibrary) //RENDERS SHELF CONTENTS
+};
 
 
+// RENDERS BOOK OBJECTS TO SHELF
 function render(array) {
     for (i = 0; i < myLibrary.length; i++) {
 
@@ -132,4 +134,5 @@ function newBook() {
 render(myLibrary);
 removeClick();
 addBookSection();
-newBookSubmission();
+
+// newBookSubmission();
