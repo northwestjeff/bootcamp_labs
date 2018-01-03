@@ -1,21 +1,9 @@
-// 4 x 5 grid
-// Every second add a new mole
-// Check and see hole has a mole already
-// Check and see if the board is full [game over]
-// Visual representation of mole [slide up from the hole? down back into the hole?]
-// Click removes the mole
-// Keep score with a click
-// speed up every ten seconds
-
-
 var moleList = []; // starts empty, fills with moles
 var holeList = []; // gets populated by function startHoleList
 var failure = false // end game check, starts as false
 var timer;
 var score = 0;
 var highScore = 0;
-// var interval = 500
-// var clicks = 1000
 
 
 // Fills holeList with 0-19 to correspond to the divs
@@ -36,7 +24,6 @@ function failureCheck() {
             highScore = score;
             $('.highScore').html("High Score: " + highScore)
         }
-
     }
 }
 
@@ -45,9 +32,9 @@ function moleGenerator() {
     holeList = _.shuffle(holeList);
     var moleTile = holeList.pop();
     $('#' + moleTile).css("backgroundImage", "url('mole.jpg')");
-    moleList.push(moleTile)
-    console.log("holeList: " + holeList)
-    console.log("moleList: " + moleList)
+    moleList.push(moleTile);
+    console.log("holeList: " + holeList);
+    console.log("moleList: " + moleList);
     failureCheck()
 }
 
@@ -67,24 +54,21 @@ $('.tile').click(function () {
         score = score + 50
     } else {
         score = score - 10
-}
-    $('#score').html("Score: "+ score)
+    }
+    $('#score').html("Score: " + score)
 });
-
 
 // Click start to begin the game
 $('#start').click(function () {
-
     startHoleList();
     moleInterval();
-})
+});
 
 // Clears the game
 $('#clear').click(function () {
-    // Event.preventDefault();
     clearInterval(timer)
     $('.tile').css("backgroundImage", "url('hole.jpg')");
-    score = 0
-    $('#score').html("Score: "+ score)
+    score = 0;
+    $('#score').html("Score: " + score)
     startHoleList()
-})
+});

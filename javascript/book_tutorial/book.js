@@ -30,7 +30,6 @@ function addBookSection(newBook) {
         const newBookSection = document.getElementById('new-book-form')
         newBookSection.style.display = 'block';
     })
-
 }
 
 
@@ -115,7 +114,7 @@ function removeClick() {
             }
             , false);
     }
-
+// This should get the index number of the book and then remove that from the library
 }
 
 function newBook() {
